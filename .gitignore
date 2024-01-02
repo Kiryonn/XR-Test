@@ -12,5 +12,5 @@ export_presets.cfg
 data_*/
 
 # Others
-build/
-capture/
+builds/
+captures/
