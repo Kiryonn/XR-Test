@@ -1,6 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dv45nx868bngq"]
+[gd_scene load_steps=14 format=3 uid="uid://dv45nx868bngq"]
 
 [ext_resource type="Script" path="res://scenes/test_scene/test_scene.gd" id="1_hwjs3"]
+[ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="2_hlln5"]
+[ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="3_fk80q"]
+[ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="4_o204m"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uyf23"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -15,15 +18,29 @@ sky = SubResource("Sky_rgvcg")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="Gradient" id="Gradient_fv2ug"]
+offsets = PackedFloat32Array(0.0714286, 0.301587, 0.650794, 0.809524)
+colors = PackedColorArray(0, 1, 0, 1, 0.0392157, 0.670588, 0, 1, 0.145098, 0.231373, 0, 1, 0.266667, 0.333333, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ytq2e"]
+seed = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_la74m"]
+color_ramp = SubResource("Gradient_fv2ug")
+noise = SubResource("FastNoiseLite_ytq2e")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ih087"]
+albedo_texture = SubResource("NoiseTexture2D_la74m")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_csevk"]
+material = SubResource("StandardMaterial3D_ih087")
+size = Vector2(100, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s5ue3"]
+size = Vector3(100, 1, 100)
+
 [node name="TestScene" type="Node3D"]
 script = ExtResource("1_hwjs3")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_7kkad")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
-shadow_enabled = true
 
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
 
@@ -34,6 +51,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -0.5)
 tracker = &"left_hand"
 
+[node name="LeftHand" parent="XROrigin3D/XRControllerLeft" instance=ExtResource("2_hlln5")]
+
 [node name="XRControllerRight" type="XRController3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, -0.5)
 tracker = &"right_hand"
+
+[node name="RightHand" parent="XROrigin3D/XRControllerRight" instance=ExtResource("3_fk80q")]
+
+[node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("4_o204m")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7kkad")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("PlaneMesh_csevk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_s5ue3")

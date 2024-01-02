@@ -1,6 +1,6 @@
 fc8a56933c4b1c8d796fdb8f7a9f9475
-::res://::1704196300
-export_presets.cfg::TextFile::-1::1704196027::0::1::::<><>::
+::res://::1704196876
+export_presets.cfg::TextFile::-1::1704196300::0::1::::<><>::
 icon.svg::CompressedTexture2D::8587736325738496397::1704190383::1704190402::1::::<><>::
 openxr_action_map.tres::OpenXRActionMap::8809565015079548980::1704190917::0::1::::<><>::
 ::res://addons/::1704196670
@@ -11,7 +11,7 @@ plugin.gd::GDScript::-1::1704196670::0::1::::<>EditorPlugin<>::
 VERSIONS.md::TextFile::-1::1704196686::0::1::::<><>::
 xr_tools.gd::GDScript::-1::1704196673::0::1::::XRTools<>Node<>::
 ::res://addons/godot-xr-tools/assets/::1704196700
-::res://addons/godot-xr-tools/assets/misc/::1704196700
+::res://addons/godot-xr-tools/assets/misc/::1704196702
 Hold trigger to continue.png::CompressedTexture2D::988247200746379666::1704196700::1704196702::1::::<><>::
 progress_bar.png::CompressedTexture2D::5548169093557756382::1704196700::1704196701::1::::<><>::
 ::res://addons/godot-xr-tools/audio/::1704196672
@@ -251,7 +251,7 @@ glove_occlusionRoughnessMetallic.png::CompressedTexture2D::1722398557178212301::
 hands_normal.png::CompressedTexture2D::4601901476640253341::1704196673::1704196698::1::::<><>::
 hands_occlusionRoughnessMetallic.png::CompressedTexture2D::550233534151587075::1704196673::1704196689::1::::<><>::
 labglove_baseColor.png::CompressedTexture2D::9207212617063690803::1704196673::1704196689::1::::<><>::
-::res://addons/godot-xr-tools/images/::1704196686
+::res://addons/godot-xr-tools/images/::1704196702
 icon.png::CompressedTexture2D::2550219196814699386::1704196686::1704196701::1::::<><>::
 ring.png::CompressedTexture2D::2354959461098973867::1704196686::1704196701::1::::<><>::
 teleport_arrow.png::CompressedTexture2D::7399331832755209064::1704196686::1704196701::1::::<><>::
