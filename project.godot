@@ -12,6 +12,7 @@ config_version=5
 
 config/name="XR Test"
 config/tags=PackedStringArray("xr")
+run/main_scene="res://scenes/test_scene/test_scene.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
