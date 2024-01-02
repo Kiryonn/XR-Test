@@ -1,9 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://dv45nx868bngq"]
+[gd_scene load_steps=16 format=3 uid="uid://dv45nx868bngq"]
 
 [ext_resource type="Script" path="res://scenes/test_scene/test_scene.gd" id="1_hwjs3"]
 [ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="2_hlln5"]
 [ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="3_fk80q"]
+[ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="4_fs5hp"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="4_o204m"]
+[ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="5_eb78x"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uyf23"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -58,6 +60,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, -0.5)
 tracker = &"right_hand"
 
 [node name="RightHand" parent="XROrigin3D/XRControllerRight" instance=ExtResource("3_fk80q")]
+
+[node name="MovementDirect" parent="XROrigin3D/XRControllerRight" instance=ExtResource("4_fs5hp")]
+
+[node name="MovementTurn" parent="XROrigin3D/XRControllerRight" instance=ExtResource("5_eb78x")]
 
 [node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("4_o204m")]
 
